@@ -35,20 +35,20 @@ impl Component for Cell {
                             true => {
                                 match p.is_black() {
                                     true => match p.rank() {
-                                        Rank::King => "將",
-                                        Rank::General => "士",
-                                        Rank::Colonel => "象",
-                                        Rank::Major => "車",
-                                        Rank::Captain => "馬",
+                                        Rank::General => "將",
+                                        Rank::Advisor => "士",
+                                        Rank::Elephant => "象",
+                                        Rank::Chariot => "車",
+                                        Rank::Horse => "馬",
                                         Rank::Cannon => "包",
                                         Rank::Sodier => "卒",
                                     }
                                     false => match p.rank() {
-                                        Rank::King => "帥",
-                                        Rank::General => "仕",
-                                        Rank::Colonel => "相",
-                                        Rank::Major => "俥",
-                                        Rank::Captain => "傌",
+                                        Rank::General => "帥",
+                                        Rank::Advisor => "仕",
+                                        Rank::Elephant => "相",
+                                        Rank::Chariot => "俥",
+                                        Rank::Horse => "傌",
                                         Rank::Cannon => "炮",
                                         Rank::Sodier => "兵",
                                     }
