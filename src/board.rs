@@ -1,9 +1,8 @@
 use yew::prelude::*;
 use yew::{Component, Properties};
 
-use crate::piece::Piece;
 use crate::cell::Cell;
-
+use crate::piece::Piece;
 
 #[derive(PartialEq, Properties)]
 pub struct Props {
@@ -48,8 +47,13 @@ impl Component for Board {
                 None => false,
             };
 
+            let is_not_revealed = match &piece {
+                Some(p) => !p.is_revealed(),
+                None => false,
+            };
+
             html! {
-                <div {onclick} class={classes!("cell", selected.then(|| Some("selected")), red.then(|| Some("red")))}>
+                <div {onclick} class={classes!("cell", selected.then(|| Some("selected")), red.then(|| Some("red")), is_not_revealed.then(|| Some("notrevealed")))}>
                     <Cell piece={piece}></Cell>
                 </div>
             }
