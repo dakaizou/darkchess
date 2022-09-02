@@ -1,10 +1,10 @@
 #[derive(PartialEq, PartialOrd, Debug)]
 pub enum Rank {
-    King,
     General,
-    Colonel,
-    Major,
-    Captain,
+    Advisor,
+    Elephant,
+    Chariot,
+    Horse,
     Cannon,
     Sodier,
 }
@@ -15,12 +15,12 @@ impl Rank {
             return true;
         }
 
-        if *self == Rank::King {
+        if *self == Rank::General {
             return *other != Rank::Sodier;
         }
 
         if *self == Rank::Sodier {
-            return *other == Rank::Sodier || *other == Rank::King;
+            return *other == Rank::Sodier || *other == Rank::General;
         }
 
         self <= other
@@ -28,15 +28,15 @@ impl Rank {
 }
 
 pub const RANK_SET: [Rank; 16] = [
-    Rank::King,
     Rank::General,
-    Rank::General,
-    Rank::Colonel,
-    Rank::Colonel,
-    Rank::Major,
-    Rank::Major,
-    Rank::Captain,
-    Rank::Captain,
+    Rank::Advisor,
+    Rank::Advisor,
+    Rank::Elephant,
+    Rank::Elephant,
+    Rank::Chariot,
+    Rank::Chariot,
+    Rank::Horse,
+    Rank::Horse,
     Rank::Cannon,
     Rank::Cannon,
     Rank::Sodier,
