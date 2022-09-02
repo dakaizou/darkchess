@@ -5,7 +5,7 @@ use yew::Component;
 
 use crate::board::Board;
 use crate::piece::Piece;
-use crate::rank::{ Rank, RANK_SET };
+use crate::rank::{Rank, RANK_SET};
 
 pub enum Msg {
     Select(usize),
@@ -202,14 +202,15 @@ impl Game {
             if from_row == to_row {
                 let (from_col, to_col) = minmax(from_col, to_col);
                 for i in from_col..to_col {
-                    if self.current_board[from_row * 8 + i].is_some() {
+                    if self.current_board[get_index(from_row, i)].is_some() {
                         count += 1;
                     }
                 }
             } else {
                 let (from_row, to_row) = minmax(from_row, to_row);
                 for i in from_row..to_row {
-                    if self.current_board[i * 8 + from_col].is_some() {
+                    if self.current_board[get_index(i, from_col)].is_some() {
+
                         count += 1;
                     }
                 }
@@ -217,6 +218,10 @@ impl Game {
             return count == 2;
         }
     }
+}
+
+fn get_index(row: usize, col: usize) -> usize {
+    row * 8 + col
 }
 
 fn get_pos(pos: usize) -> (usize, usize) {
