@@ -58,7 +58,7 @@ impl Component for Game {
                                 } else if !self.current_board[prev_pos]
                                     .as_ref()
                                     .unwrap()
-                                    .can_attack(&current_piece)
+                                    .can_attack(current_piece)
                                     || !self.is_valid_attack(prev_pos, pos)
                                 {
                                     log::warn!("invalid attack");
@@ -83,20 +83,18 @@ impl Component for Game {
                             );
                         }
                     }
-                } else {
-                    if let Some(prev_pos) = self.selected_cell {
-                        // move
-                        if self.is_valid_move(prev_pos, pos) {
-                            self.current_board[pos] = self.current_board[prev_pos].clone();
-                            self.current_board[prev_pos] = None;
-                            self.selected_cell = None;
-                            self.is_black_turn = self.next_turn_black(false);
-                        } else {
-                            self.selected_cell = None;
-                        }
+                } else if let Some(prev_pos) = self.selected_cell {
+                    // move
+                    if self.is_valid_move(prev_pos, pos) {
+                        self.current_board[pos] = self.current_board[prev_pos].clone();
+                        self.current_board[prev_pos] = None;
+                        self.selected_cell = None;
+                        self.is_black_turn = self.next_turn_black(false);
                     } else {
-                        self.selected_cell = None
+                        self.selected_cell = None;
                     }
+                } else {
+                    self.selected_cell = None
                 }
             }
         };
@@ -158,9 +156,9 @@ impl Game {
         }
 
         if from_row == to_row {
-            return (from_col == to_col.wrapping_add(1)) || (from_col == to_col.wrapping_sub(1));
+            (from_col == to_col.wrapping_add(1)) || (from_col == to_col.wrapping_sub(1))
         } else {
-            return (from_row == to_row.wrapping_add(1)) || (from_row == to_row.wrapping_sub(1));
+            (from_row == to_row.wrapping_add(1)) || (from_row == to_row.wrapping_sub(1))
         }
     }
 
@@ -191,11 +189,11 @@ impl Game {
 
         if *self.current_board[from].as_ref().unwrap().rank() != Rank::Cannon {
             if from_row == to_row {
-                return (from_col == to_col.wrapping_add(1))
-                    || (from_col == to_col.wrapping_sub(1));
+                (from_col == to_col.wrapping_add(1))
+                    || (from_col == to_col.wrapping_sub(1))
             } else {
-                return (from_row == to_row.wrapping_add(1))
-                    || (from_row == to_row.wrapping_sub(1));
+                (from_row == to_row.wrapping_add(1))
+                    || (from_row == to_row.wrapping_sub(1))
             }
         } else {
             let mut count = 0;
@@ -215,7 +213,7 @@ impl Game {
                     }
                 }
             }
-            return count == 2;
+            count == 2
         }
     }
 }

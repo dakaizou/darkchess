@@ -31,8 +31,6 @@ impl Component for Board {
 
         let render_cell = |row: usize, col: usize, piece: Option<Piece>| {
             let select_cell_messenger = select_cell_messenger.clone();
-            let row = row.clone();
-            let col = col.clone();
             let onclick = Callback::from(move |_| {
                 select_cell_messenger.emit(8 * row + col);
             });

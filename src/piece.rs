@@ -43,7 +43,7 @@ impl Piece {
     }
 
     pub fn rank(&self) -> &Rank {
-        &self.rank
+        self.rank
     }
 
     pub fn reveal(&mut self) {
