@@ -157,7 +157,6 @@ impl Game {
             return false;
         }
 
-        log::info!("from row: {}, from col: {}, to row: {}, to col: {}", from_row, from_col, to_row, to_col);
         if from_row == to_row {
             return (from_col == to_col.wrapping_add(1)) || (from_col == to_col.wrapping_sub(1));
         } else {
