@@ -11,19 +11,12 @@ pub enum Rank {
 
 impl Rank {
     pub fn can_attack(&self, other: &Rank) -> bool {
-        if *self == Rank::Cannon {
-            return true;
+        match *self {
+            Rank::Cannon => true,
+            Rank::General => *other != Rank::Sodier,
+            Rank::Sodier => *other == Rank::Sodier || *other == Rank::General,
+            _ => self <= other,
         }
-
-        if *self == Rank::General {
-            return *other != Rank::Sodier;
-        }
-
-        if *self == Rank::Sodier {
-            return *other == Rank::Sodier || *other == Rank::General;
-        }
-
-        self <= other
     }
 }
 

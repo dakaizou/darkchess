@@ -10,4 +10,4 @@ getrandom = { version = "0.2.7", features = ["js"] }
 log = "0.4.17"
 rand = "0.8.5"
 wasm-logger = "0.2.0"
-yew = "0.19.3"
+yew = { version = "0.20.0", features = ["csr"] }

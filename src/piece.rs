@@ -1,32 +1,19 @@
+use crate::game::Color;
 use crate::rank::Rank;
 
-
-#[derive(PartialEq)]
+#[derive(Clone, PartialEq)]
 pub struct Piece {
     rank: &'static Rank,
-    is_black: bool,
+    color: Color,
     is_revealed: bool,
-    is_selected: bool,
-}
-
-impl Clone for Piece {
-    fn clone(&self) -> Self {
-        Self {
-            rank: self.rank,
-            is_black: self.is_black,
-            is_revealed: self.is_revealed,
-            is_selected: self.is_selected,
-        }
-    }
 }
 
 impl Piece {
-    pub fn new(rank: &'static Rank, is_black: bool) -> Self {
+    pub fn new(rank: &'static Rank, color: Color) -> Self {
         Self {
             rank,
-            is_black,
+            color,
             is_revealed: false,
-            is_selected: false,
         }
     }
 
@@ -34,8 +21,8 @@ impl Piece {
         self.rank.can_attack(other.rank)
     }
 
-    pub fn is_black(&self) -> bool {
-        self.is_black
+    pub fn color(&self) -> Color {
+        self.color.clone()
     }
 
     pub fn is_revealed(&self) -> bool {

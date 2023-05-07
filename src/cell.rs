@@ -3,7 +3,7 @@ use yew::{Component, Properties};
 
 use crate::piece::Piece;
 use crate::rank::Rank;
-
+use crate::game::Color;
 
 #[derive(PartialEq, Properties)]
 pub struct Props {
@@ -33,8 +33,8 @@ impl Component for Cell {
                     Some(p) => {
                         match p.is_revealed() {
                             true => {
-                                match p.is_black() {
-                                    true => match p.rank() {
+                                match p.color() {
+                                    Color::Black => match p.rank() {
                                         Rank::General => "將",
                                         Rank::Advisor => "士",
                                         Rank::Elephant => "象",
@@ -43,7 +43,7 @@ impl Component for Cell {
                                         Rank::Cannon => "包",
                                         Rank::Sodier => "卒",
                                     }
-                                    false => match p.rank() {
+                                    Color::Red => match p.rank() {
                                         Rank::General => "帥",
                                         Rank::Advisor => "仕",
                                         Rank::Elephant => "相",
@@ -65,5 +65,4 @@ impl Component for Cell {
             </div>
         }
     }
-
 }

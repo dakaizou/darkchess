@@ -2,6 +2,7 @@ use yew::prelude::*;
 use yew::{Component, Properties};
 
 use crate::cell::Cell;
+use crate::game::Color;
 use crate::piece::Piece;
 
 #[derive(PartialEq, Properties)]
@@ -41,7 +42,7 @@ impl Component for Board {
             };
 
             let red = match &piece {
-                Some(p) => !p.is_black() && p.is_revealed(),
+                Some(p) => p.color() == Color::Red && p.is_revealed(),
                 None => false,
             };
 
